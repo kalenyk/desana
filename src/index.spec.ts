@@ -1,4 +1,5 @@
 import { deepStrictEqual } from "assert";
+import * as moment from "moment";
 import { fetchAvailability } from "./index";
 import { Space } from "./types";
 
@@ -123,6 +124,57 @@ describe("src/index", () => {
 
       deepStrictEqual(availability, {
         "2020-09-07": {},
+      });
+    });
+  });
+
+  describe("a space with 30 minutes advance notice and different timezones", () => {
+    let space: Space;
+    before(async () => {
+      space = await import(
+        "../fixtures/space-with-30-minutes-advance-notice.json"
+      );
+    });
+
+    it("fetches availability for a London time", () => {
+      const availability = fetchAvailability(
+        space,
+        1,
+        moment.tz("2021-07-26 15:12:00", "Europe/London").toDate()
+      );
+
+      deepStrictEqual(availability, {
+        "2021-07-26": {
+          close: {
+            hour: 17,
+            minute: 0,
+          },
+          open: {
+            hour: 10,
+            minute: 45,
+          },
+        },
+      });
+    });
+
+    it("fetches availability for a Tokyo time", () => {
+      const availability = fetchAvailability(
+        space,
+        1,
+        moment.tz("2021-07-26 23:24:00", "Asia/Tokyo").toDate()
+      );
+
+      deepStrictEqual(availability, {
+        "2021-07-26": {
+          close: {
+            hour: 17,
+            minute: 0,
+          },
+          open: {
+            hour: 11,
+            minute: 0,
+          },
+        },
       });
     });
   });

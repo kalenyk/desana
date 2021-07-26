@@ -4,6 +4,7 @@
   "description": "A task for Desana to calculate when a space is available depending on specific criteria.",
   "main": "dist/index.js",
   "scripts": {
+    "start": "nodemon src/index.ts",
     "test": "mocha -r ts-node/register 'src/**/*.spec.ts'",
     "test:watch": "mocha -r ts-node/register --watch --watch-files src, src/**/*.spec.ts"
   },
@@ -19,11 +20,13 @@
     "eslint-plugin-prettier": "^3.1.4",
     "mocha": "^8.2.0",
     "prettier": "^2.1.2",
-    "ts-node": "^9.0.0",
+    "ts-node": "^9.1.1",
     "typescript": "^4.0.3"
   },
   "dependencies": {
     "@types/luxon": "^1.25.0",
-    "luxon": "^1.25.0"
+    "luxon": "^1.25.0",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33"
   }
 }
