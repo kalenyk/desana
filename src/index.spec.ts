@@ -177,5 +177,93 @@ describe("src/index", () => {
         },
       });
     });
+
+    it("fetches availability for a UTC time 7 days", () => {
+      const availability = fetchAvailability(
+        space,
+        7,
+        new Date(Date.UTC(2021, 7, 4, 14, 30))
+      );
+
+      deepStrictEqual(availability, {
+        "2021-08-04": {
+          open: { hour: 11, minute: 15 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-05": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-06": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-07": {},
+        "2021-08-08": {},
+        "2021-08-09": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-10": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+      });
+    });
+
+    it("fetches availability for a UTC time 14 days", () => {
+      const availability = fetchAvailability(
+        space,
+        14,
+        new Date(Date.UTC(2021, 7, 4, 14, 30))
+      );
+
+      deepStrictEqual(availability, {
+        "2021-08-04": {
+          open: { hour: 11, minute: 15 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-05": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-06": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-07": {},
+        "2021-08-08": {},
+        "2021-08-09": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-10": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-11": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-12": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-13": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-14": {},
+        "2021-08-15": {},
+        "2021-08-16": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+        "2021-08-17": {
+          open: { hour: 9, minute: 0 },
+          close: { hour: 17, minute: 0 },
+        },
+      });
+    });
   });
 });

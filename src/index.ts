@@ -25,8 +25,13 @@ export const fetchAvailability = (
   );
 
   const dayOfWeek: number = nowUTC.isoWeekday();
+  const futureDates: OpeningTimes[] = [];
 
-  const advanceDays: OpeningTimes[] = Object.values(space.openingTimes).splice(
+  for (let i = 0; i < numberOfDays / 7 + 1; i++) {
+    futureDates.push(...Object.values(space.openingTimes));
+  }
+
+  const advanceDays: OpeningTimes[] = futureDates.splice(
     dayOfWeek - 1,
     numberOfDays
   );
